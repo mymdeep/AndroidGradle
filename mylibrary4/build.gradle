@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion ANDROID_COMPLILE_SDK_VERSION as int
+    buildToolsVersion ANDROID_BUILD_SDK_VERSION
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/umeng_social_net.jar')
+    // compile project(':commonlib')
+}
+//artifacts.add("default", file('umeng_social_net.jar'))

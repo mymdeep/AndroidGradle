@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion ANDROID_COMPLILE_SDK_VERSION as int
+    buildToolsVersion ANDROID_BUILD_SDK_VERSION
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+
+    }
+    defaultPublishConfig  rootProject.ext.buildstyle
+    buildTypes {
+        debug {
+            buildConfigField("String","TEXT","\"这个字符串来自library module debug模式\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        stag {
+            buildConfigField("String","TEXT","\"这个字符串来自library module test模式\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField("String","TEXT","\"这个字符串来自library module release模式\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    productFlavors {
+//        red {
+//            applicationId 'android.com.red'
+//
+//        }
+//        blue {
+//            applicationId 'android.com.blue'
+//
+//        }
+//        yellow {
+//            applicationId 'android.com.yellow'
+//
+//        }
+//        black {
+//            applicationId 'android.com.black'
+//
+//        }
+//    }
+}
+
+dependencies {
+    compile project(':mylibrary2')
+}
