@@ -25,18 +25,23 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String","TEXT","\""+aaa+"\"")
+            //buildConfigField("String","TEXT","\""+aaa+"\"")
+            buildConfigField("String","TEXT","\"$aaa\"")
+            resValue("color","textcolor","#DDA0DD")
             minifyEnabled false
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         stag {
             buildConfigField("String","TEXT","\"这个字符串来自test模式\"")
+            resValue("color","textcolor","#aaaaaa")
             minifyEnabled false
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             buildConfigField("String","TEXT","\"这个字符串来自release模式\"")
+            resValue("color","textcolor","#aaaaaa")
             minifyEnabled false
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -67,20 +72,15 @@ android {
         }
     }
 //    productFlavors {
-//        red {
-//            applicationId 'android.com.red'
+//        free {
+//            applicationId 'android.com.free'
+//                versionCode 1
+//    minSdkVersion rootProject.ext.minSdk
+//    targetSdkVersion rootProject.ext.targetSdk
 //
 //        }
-//        blue {
-//            applicationId 'android.com.blue'
-//
-//        }
-//        yellow {
-//            applicationId 'android.com.yellow'
-//
-//        }
-//        black {
-//            applicationId 'android.com.black'
+//        pay {
+//            applicationId 'android.com.pay'
 //
 //        }
 //    }

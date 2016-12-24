@@ -55,5 +55,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/text_style"
         />
-
+    <TextView
+        android:id="@+id/text9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/text_style"
+        />
 </LinearLayout>

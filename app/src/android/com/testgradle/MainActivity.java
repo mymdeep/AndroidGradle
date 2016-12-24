@@ -5,18 +5,22 @@ import android.app.Activity;
 import android.com.mylibrary.ConstantsLIbrary;
 import android.com.mylibrary2.Constant;
 import android.com.mylibrary4.Constant4;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.umeng.socialize.common.SocializeConstants;
 
 public class MainActivity extends Activity {
-    private TextView t1,t2,t3,t4,t5,t6,t7,t8;
+    private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         t1 = (TextView) findViewById(R.id.text1);
+        t1.setTextColor(getResources().getColor(R.color.textcolor));
         t1.setText("包名："+this.getPackageName());
         t2 = (TextView) findViewById(R.id.text2);
         t2.setText("来自BuildConfig："+BuildConfig.TEXT);
@@ -32,5 +36,17 @@ public class MainActivity extends Activity {
         t7.setText("来自library3："+android.com.mylibrary3.Constant.result3);
         t8 = (TextView) findViewById(R.id.text8);
         t8.setText("来自library4："+Constant4.result);
+        t9 = (TextView) findViewById(R.id.text9);
+        ApplicationInfo appInfo = null;
+        try {
+             appInfo = this.getPackageManager()
+                    .getApplicationInfo(getPackageName(),
+                            PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String msg =appInfo.metaData.getString("UMENG_CHANNEL");
+        t9.setText("meta-data："+msg);
     }
 }
